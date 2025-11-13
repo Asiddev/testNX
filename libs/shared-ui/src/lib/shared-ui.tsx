@@ -14,6 +14,7 @@ export function Greeting({ name, appName }: GreetingProps) {
         This shared component is imported from the monorepo library into{' '}
         <strong>{appName}</strong>
       </p>
+      <p>🎉 Testing the affected feature!</p>
     </div>
   );
 }

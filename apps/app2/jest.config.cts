@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: '@nx-test/apps/app2',
+  displayName: '@nx-test/app2',
   preset: '../../jest.preset.js',
   transform: {
     '^(?!.*\\.(js|jsx|ts|tsx|css|json)$)': '@nx/react/plugins/jest',

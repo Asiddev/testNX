@@ -11,6 +11,9 @@
     },
     {
       "path": "./apps/app2"
+    },
+    {
+      "path": "./apps/app2-e2e"
     }
   ]
 }
