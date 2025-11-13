@@ -19,7 +19,7 @@ describe('App', () => {
         <App />
       </BrowserRouter>
     );
-    expect(getByText(/Hello User/i)).toBeTruthy();
-    expect(getByText(/App1/i)).toBeTruthy();
+    expect(getByText(/Hello Developer/i)).toBeTruthy();
+    expect(getByText(/App2/i)).toBeTruthy();
   });
 });

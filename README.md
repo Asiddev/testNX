@@ -1,51 +1,111 @@
-# NxTest
+# NxTest - React Vanilla Monorepo
 
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is ready ✨.
+✨ **Nx Monorepo with React + Webpack + Jest + Cypress** ✨
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/tutorials/react-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+This workspace demonstrates an Nx monorepo with:
+- **Two micro frontend apps** (`app1` and `app2`) using React with Webpack bundler
+- **One shared library** (`shared-ui`) consumed by both apps
+- **Jest** for unit testing
+- **Cypress** for E2E testing
 
-## Run tasks
+Run `npx nx graph` to visualize the project dependency graph.
 
-To run the dev server for your app, use:
+## Quick Start
+
+### Run Development Servers
 
 ```sh
+# App 1 (http://localhost:4200)
 npx nx serve app1
+
+# App 2 (http://localhost:4200)
+npx nx serve app2
 ```
 
-To create a production bundle:
+### Run Tests
 
 ```sh
+# Test both apps
+npx nx run-many --target=test --projects=app1,app2
+
+# Test individual app
+npx nx test app1
+
+# Run E2E tests
+npx nx e2e app1-e2e
+```
+
+### Build for Production
+
+```sh
+# Build both apps
+npx nx run-many --target=build --projects=app1,app2
+
+# Build individual app
 npx nx build app1
 ```
 
-To see all available targets to run for a project, run:
+### View Project Details
 
 ```sh
 npx nx show project app1
+npx nx show project app2
+npx nx show project shared-ui
 ```
 
 These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
 
 [More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
 
-## Add new projects
+## Project Structure
 
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
-
-Use the plugin's generator to create new projects.
-
-To generate a new application, use:
-
-```sh
-npx nx g @nx/react:app demo
+```
+nxTest/
+├── apps/
+│   ├── app1/              # Micro frontend 1
+│   ├── app1-e2e/          # E2E tests for app1
+│   ├── app2/              # Micro frontend 2
+│   └── app2-e2e/          # E2E tests for app2
+├── libs/
+│   └── shared-ui/         # Shared React components
+│       └── src/
+│           └── lib/
+│               └── shared-ui.tsx  # Greeting component
+├── nx.json                # Nx configuration
+├── tsconfig.base.json     # Shared TypeScript paths
+└── package.json
 ```
 
-To generate a new library, use:
+## Adding Shared Components
+
+The `shared-ui` library is already set up. Both apps import from it:
+
+```tsx
+import { Greeting } from '@nx-test/shared-ui';
+```
+
+To add more components to the shared library:
 
 ```sh
-npx nx g @nx/react:lib mylib
+# Generate a new component in shared-ui
+npx nx g @nx/react:component my-button --project=shared-ui --directory=lib
+
+# Export it from libs/shared-ui/src/index.ts
+# Then import in your apps
+```
+
+## Add More Projects
+
+Generate new apps or libraries:
+
+```sh
+# New React app with Webpack
+npx nx g @nx/react:app app3 --bundler=webpack --style=css --routing=true
+
+# New shared library
+npx nx g @nx/react:lib utils --bundler=none
 ```
 
 You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.

@@ -16,6 +16,10 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "es2022",
-    "customConditions": ["@nx-test/source"]
+    "customConditions": ["@nx-test/source"],
+    "baseUrl": ".",
+    "paths": {
+      "@nx-test/shared-ui": ["libs/shared-ui/src/index.ts"]
+    }
   }
 }

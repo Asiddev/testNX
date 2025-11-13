@@ -57,6 +57,8 @@
     "webpack-cli": "^5.1.4"
   },
   "workspaces": [
-    "apps/*"
+    "apps/*",
+    "app2",
+    "shared-ui"
   ]
 }

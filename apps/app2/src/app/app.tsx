@@ -4,8 +4,8 @@ import { Greeting } from '@nx-test/shared-ui';
 export function App() {
   return (
     <div style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto' }}>
-      <h1>App 1 - Micro Frontend</h1>
-      <Greeting name="User" appName="App1" />
+      <h1>App 2 - Micro Frontend</h1>
+      <Greeting name="Developer" appName="App2" />
 
       {/* START: routes */}
       {/* These routes and navigation have been generated for you */}
